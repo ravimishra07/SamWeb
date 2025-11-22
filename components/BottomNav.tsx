@@ -13,7 +13,7 @@ export const BottomNav: React.FC = () => {
     const tabs = [
         { name: "Home", href: "/", icon: MessageSquare },
         { name: "Insights", href: "/insights", icon: Activity },
-        // { name: "Profile", href: "/profile", icon: User }, // Commented out until profile is ready
+        { name: "Profile", href: "/profile", icon: User },
     ];
 
     return (

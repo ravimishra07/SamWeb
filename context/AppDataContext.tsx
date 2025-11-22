@@ -1,117 +1,80 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { ChatMessage, MOCK_CHAT } from '../utils/mockData';
-import { saveToStorage, getFromStorage, STORAGE_KEYS } from '../utils/storage';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { ChatMessage } from '../utils/mockData';
 import { DailyLog } from '../utils/types';
 import { seedData } from '../utils/seedData';
+import { db } from '../utils/db';
+import { backupService } from '../services/backupService';
 
 interface AppDataState {
     logs: DailyLog[];
     chatHistory: ChatMessage[];
-    addDailyLog: (entry: DailyLog) => void;
-    updateDailyLog: (entry: DailyLog) => void;
+    addDailyLog: (entry: DailyLog) => Promise<void>;
+    updateDailyLog: (entry: DailyLog) => Promise<void>;
     getLogForDate: (date: string) => DailyLog | undefined;
-    addChatMessage: (message: ChatMessage) => void;
-    clearChatHistory: () => void;
-    clearAllData: () => void;
+    addChatMessage: (message: ChatMessage) => Promise<void>;
+    clearChatHistory: () => Promise<void>;
+    clearAllData: () => Promise<void>;
+    backupData: (key: string) => Promise<{ success: boolean; error?: string }>;
+    restoreData: (key: string) => Promise<{ success: boolean; error?: string; count?: number }>;
 }
 
 const AppDataContext = createContext<AppDataState | undefined>(undefined);
 
 export const AppDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [logs, setLogs] = useState<DailyLog[]>([]);
-    const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    // Live Queries (Reactive to DB changes)
+    const logs = useLiveQuery(() => db.logs.orderBy('date').reverse().toArray()) || [];
+    const chatHistory = useLiveQuery(() => db.chatHistory.orderBy('timestamp').toArray()) || [];
 
-    // ... imports
-
+    // Seeding Logic
     useEffect(() => {
-        // Load initial data
-        const storedLogs = getFromStorage<DailyLog[]>(STORAGE_KEYS.LOGS, []);
-        const storedChat = getFromStorage<ChatMessage[]>(STORAGE_KEYS.CHAT, []);
-
-        // Merge seed data with stored logs (prefer stored logs if conflict)
-        const mergedLogs = [...storedLogs];
-        let hasNewData = false;
-
-        seedData.forEach((seedLog) => {
-            if (!mergedLogs.find(l => l.date === seedLog.date)) {
-                mergedLogs.push(seedLog);
-                hasNewData = true;
+        const seedDB = async () => {
+            const count = await db.logs.count();
+            if (count === 0) {
+                console.log("Seeding database...");
+                await db.logs.bulkAdd(seedData);
             }
-        });
-
-        if (hasNewData) {
-            mergedLogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        }
-
-        setLogs(mergedLogs);
-        setChatHistory(storedChat);
-        setIsLoaded(true);
+        };
+        seedDB();
     }, []);
 
-    useEffect(() => {
-        if (isLoaded) {
-            saveToStorage(STORAGE_KEYS.LOGS, logs);
-        }
-    }, [logs, isLoaded]);
-
-    useEffect(() => {
-        if (isLoaded) {
-            saveToStorage(STORAGE_KEYS.CHAT, chatHistory);
-        }
-    }, [chatHistory, isLoaded]);
-
-    const addDailyLog = (entry: DailyLog) => {
-        setLogs((prev) => {
-            // Check if log already exists for this date
-            const existingIndex = prev.findIndex(log => log.date === entry.date);
-            if (existingIndex !== -1) {
-                // Update existing log
-                const updated = [...prev];
-                updated[existingIndex] = entry;
-                return updated;
-            }
-            // Add new log
-            return [...prev, entry];
-        });
+    const addDailyLog = async (entry: DailyLog) => {
+        await db.logs.put(entry);
     };
 
-    const updateDailyLog = (entry: DailyLog) => {
-        setLogs((prev) => {
-            const index = prev.findIndex(log => log.date === entry.date);
-            if (index !== -1) {
-                const updated = [...prev];
-                updated[index] = entry;
-                return updated;
-            }
-            return prev;
-        });
+    const updateDailyLog = async (entry: DailyLog) => {
+        await db.logs.put(entry);
     };
 
     const getLogForDate = (date: string): DailyLog | undefined => {
         return logs.find(log => log.date === date);
     };
 
-    const addChatMessage = (message: ChatMessage) => {
-        setChatHistory((prev) => {
-            if (prev.some(msg => msg.id === message.id)) {
-                return prev;
-            }
-            return [...prev, message];
-        });
+    const addChatMessage = async (message: ChatMessage) => {
+        // Check for duplicate ID to be safe, though put() overwrites by default
+        // We want to avoid overwriting if it's a distinct message with same ID (unlikely with timestamp)
+        // But for chat, appending is the goal.
+        await db.chatHistory.put(message);
     };
 
-    const clearChatHistory = () => {
-        setChatHistory([]);
+    const clearChatHistory = async () => {
+        await db.chatHistory.clear();
     };
 
-    const clearAllData = () => {
-        setLogs([]);
-        setChatHistory([]);
-        localStorage.clear();
+    const clearAllData = async () => {
+        await db.logs.clear();
+        await db.chatHistory.clear();
         window.location.reload();
+    };
+
+    const backupData = async (key: string) => {
+        return await backupService.backupToCloud(key);
+    };
+
+    const restoreData = async (key: string) => {
+        return await backupService.restoreFromCloud(key);
     };
 
     return (
@@ -125,6 +88,8 @@ export const AppDataProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 addChatMessage,
                 clearChatHistory,
                 clearAllData,
+                backupData,
+                restoreData,
             }}
         >
             {children}

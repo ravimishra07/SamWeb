@@ -2,13 +2,14 @@
 
 import React from 'react';
 import { Header } from '@/components/Header';
-import { BottomNav } from '@/components/BottomNav';
 import { useAppData } from '@/context/AppDataContext';
+import { DataSettings } from '@/components/DataSettings';
 
 export default function ProfilePage() {
     const { logs, chatHistory, clearAllData } = useAppData();
 
     const handleExport = () => {
+        // ... existing export logic
         const data = {
             logs,
             chatHistory,
@@ -28,9 +29,12 @@ export default function ProfilePage() {
     return (
         <>
             <Header title="Profile" />
-            <main className="flex-1 flex flex-col p-6 space-y-6">
+            <main className="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto pb-24">
+                {/* Hybrid Vault Settings */}
+                <DataSettings />
+
                 <div className="bg-sam-card p-6 rounded-2xl border border-white/5">
-                    <h2 className="text-lg font-bold text-white mb-4">Data Management</h2>
+                    <h2 className="text-lg font-bold text-white mb-4">Legacy Data Management</h2>
                     <div className="space-y-3">
                         <button
                             onClick={handleExport}
@@ -54,7 +58,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </main>
-            <BottomNav />
+
         </>
     );
 }

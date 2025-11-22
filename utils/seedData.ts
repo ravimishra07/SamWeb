@@ -1040,18 +1040,10 @@ export const seedData: DailyLog[] = [
       ]
     },
     "goals": [
-      {
-        "short-term": [
-          "Follow up professionally if no update by tomorrow",
-          "Dedicate 1 hour to networking in my target niche (Nagar opportunities)"
-        ]
-      },
-      {
-        "long-term": [
-          "Develop portfolio/blog to attract suitable roles",
-          "Build 3-month financial runway for selective job search"
-        ]
-      }
+      "Short-term: Follow up professionally if no update by tomorrow",
+      "Short-term: Dedicate 1 hour to networking in my target niche (Nagar opportunities)",
+      "Long-term: Develop portfolio/blog to attract suitable roles",
+      "Long-term: Build 3-month financial runway for selective job search"
     ],
     "tags": [
       "JobSearch",
@@ -2949,11 +2941,10 @@ export const seedData: DailyLog[] = [
       "ideas": []
     },
     "goals": [
-      "YouTube – 1 short upload",
-      "Tanvi channel video uploaded",
-      "SAM app current version complete",
-      "UPI prep (nothing done)",
-      "Interview prep (nothing done)"
+      "YouTube - Short #1: Uploaded 1 short, missed daily goal. Next: Plan and batch record upcoming shorts",
+      "SAM App: Did ideation. Next: Build MVP for personal use",
+      "UBI Preparation: Skipped. Next: Reschedule prep and set specific topics to cover",
+      "Interview Preparation: Done. Next: Review feedback and refine answers"
     ],
     "tags": [
       "#TraumaForgedInsight",
@@ -3090,30 +3081,10 @@ export const seedData: DailyLog[] = [
       ]
     },
     "goals": [
-      {
-        "id": "g1",
-        "name": "YouTube - Short #1",
-        "progress": "Uploaded 1 short, missed daily goal",
-        "next_steps": "Plan and batch record upcoming shorts"
-      },
-      {
-        "id": "g2",
-        "name": "SAM App",
-        "progress": "Did ideation",
-        "next_steps": "Build MVP for personal use"
-      },
-      {
-        "id": "g3",
-        "name": "UBI Preparation",
-        "progress": "Skipped",
-        "next_steps": "Reschedule prep and set specific topics to cover"
-      },
-      {
-        "id": "g4",
-        "name": "Interview Preparation",
-        "progress": "Done",
-        "next_steps": "Review feedback and refine answers"
-      }
+      "YouTube - Short #1: Uploaded 1 short, missed daily goal. Next: Plan and batch record upcoming shorts",
+      "SAM App: Did ideation. Next: Build MVP for personal use",
+      "UBI Preparation: Skipped. Next: Reschedule prep and set specific topics to cover",
+      "Interview Preparation: Done. Next: Review feedback and refine answers"
     ],
     "tags": [
       "interview",
