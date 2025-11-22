@@ -14,6 +14,7 @@ export interface DailyLogInsights {
 
 export interface DailyLog {
     id: string;
+    date: string; // Format: YYYY-MM-DD
     timestamp: string;
     summary: string;
     status: DailyLogStatus;

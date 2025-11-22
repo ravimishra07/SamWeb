@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-08-15T21:45:12Z",
+  "summary": "Woke up early at a friend’s place and only slept 5 hours, which felt insufficient. Followed planned routine for the day—interview preparation in the first half and SAM app building in the second half. Managed to go for a run at higher speed, which felt great. Joined a library to study and work, which is helping add structure to my days. Currently at baseline mood with energy that feels normal to others but slightly elevated for me. Main concern is reduced sleep and waking up early feeling unusually fresh, which is a possible early hypomania signal. Plan is to take SOS tonight and aim for a full 8 hours of sleep.",
+  "status": {
+    "moodLevel": "6",
+    "sleepQuality": "4",
+    "sleepDuration": "5",
+    "energyLevel": "6",
+    "stabilityScore": "6"
+  },
+  "insights": {
+    "wins": [
+      "Followed structured daily routine",
+      "Ran with higher speed and felt good",
+      "Joined library for studying and working to add structure"
+    ],
+    "losses": [
+      "Reduced sleep duration and quality"
+    ],
+    "ideas": []
+  },
+  "goals": [
+    "Take SOS tonight to ensure full 8 hours of sleep"
+  ],
+  "tags": [
+    "reduced_sleep",
+    "baseline_mood",
+    "possible_hypomania_signal",
+    "routine_followed",
+    "exercise_boost",
+    "library_structure"
+  ],
+  "triggerEvents": [
+    "Slept only 5 hours after staying at a friend’s place",
+    "Started using library for study and work"
+  ],
+  "symptomChecklist": [
+    "Reduced need for sleep",
+    "Elevated energy compared to personal baseline"
+  ]
+}

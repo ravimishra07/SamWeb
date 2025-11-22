@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-11-19T21:46:23Z",
+  "summary": "I worked from home today and spent the day mostly relaxed. I didn’t do much work because my only task was to watch KT videos, and I feel a bit conflicted that I should have watched more. My overall mood stayed neutral. I had normal background stress and some thoughts about responsibilities, but nothing overwhelming. I also had some fun conversations and roasting moments, which didn’t affect my mood much.",
+  "status": {
+    "moodLevel": "5",
+    "sleepQuality": "7",
+    "sleepDuration": "9",
+    "energyLevel": "5",
+    "stabilityScore": "6"
+  },
+  "insights": {
+    "wins": [
+      "I handled the day calmly.",
+      "I stayed emotionally steady."
+    ],
+    "losses": [
+      "I didn’t watch as many KT videos as I planned."
+    ],
+    "ideas": []
+  },
+  "goals": [
+    "Watch more KT videos tomorrow."
+  ],
+  "tags": ["wfh", "neutral_day", "low_effort", "mild_stress"],
+  "triggerEvents": [],
+  "symptomChecklist": [
+    "Background stress",
+    "Low motivation"
+  ]
+}

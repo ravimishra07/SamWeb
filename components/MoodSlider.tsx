@@ -6,12 +6,13 @@ import clsx from 'clsx';
 interface MoodSliderProps {
     value: number;
     onChange: (value: number) => void;
+    onSubmit?: (value: number) => void;
     label?: string;
     min?: number;
     max?: number;
 }
 
-export const MoodSlider: React.FC<MoodSliderProps> = ({ value, onChange, label = "Mood", min = 1, max = 10 }) => {
+export const MoodSlider: React.FC<MoodSliderProps> = ({ value, onChange, onSubmit, label = "Mood", min = 1, max = 10 }) => {
     const [isDragging, setIsDragging] = useState(false);
     const trackRef = useRef<HTMLDivElement>(null);
 
@@ -68,46 +69,50 @@ export const MoodSlider: React.FC<MoodSliderProps> = ({ value, onChange, label =
     const percentage = ((value - min) / (max - min)) * 100;
 
     return (
-        <div className="w-full py-4 px-1">
-            <div className="flex justify-between mb-2 px-1">
-                <span className="text-gray-400 text-sm font-medium">{label}</span>
-                <span className="text-sam-blue-glow font-bold text-sm">{value}/{max}</span>
+        <div className="w-full max-w-[300px] mx-auto bg-[#1a1a1a] rounded-xl p-4 border border-white/5 shadow-xl">
+            <div className="flex justify-between items-center mb-4">
+                <span className="text-gray-300 font-medium text-sm">{label}</span>
+                <span className="text-white font-bold text-base">{value}</span>
             </div>
 
-            <div
-                className="relative h-12 flex items-center cursor-pointer touch-none"
-                ref={trackRef}
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleTouchStart}
-            >
-                {/* Track Background */}
-                <div className="absolute w-full h-4 bg-gray-800 rounded-full overflow-hidden shadow-inner">
-                    {/* Active Track */}
+            <div className="relative h-10 flex items-center justify-center mb-4">
+                {/* Track Container */}
+                <div
+                    className="relative w-full h-2 bg-[#2A2A2A] rounded-full overflow-hidden cursor-pointer touch-none"
+                    ref={trackRef}
+                    onMouseDown={handleMouseDown}
+                    onTouchStart={handleTouchStart}
+                >
+                    {/* Gradient Track */}
                     <div
-                        className="h-full bg-sam-blue-DEFAULT transition-all duration-75 ease-out"
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-full transition-all duration-75 ease-out"
                         style={{ width: `${percentage}%` }}
                     />
                 </div>
 
-                {/* Thumb */}
+                {/* Ring Thumb */}
                 <div
                     className={clsx(
-                        "absolute h-8 w-8 bg-white rounded-full shadow-lg flex items-center justify-center transition-transform duration-100 ease-out z-10",
+                        "absolute h-5 w-5 bg-[#1a1a1a] border-[2px] border-white rounded-full shadow-[0_0_8px_rgba(0,0,0,0.5)] flex items-center justify-center pointer-events-none transition-transform duration-100 ease-out z-10",
                         isDragging ? "scale-110" : "scale-100"
                     )}
-                    style={{ left: `calc(${percentage}% - 16px)` }}
-                >
-                    <div className="w-2 h-2 bg-sam-blue-DEFAULT rounded-full" />
-
-                    {/* Floating Bubble */}
-                    {isDragging && (
-                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-sam-blue-DEFAULT text-white text-xs font-bold px-2 py-1 rounded-lg shadow-lg animate-in fade-in zoom-in duration-200">
-                            {value}
-                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-sam-blue-DEFAULT rotate-45" />
-                        </div>
-                    )}
-                </div>
+                    style={{ left: `calc(${percentage}% - 10px)` }}
+                />
             </div>
+
+            <div className="flex justify-between text-[10px] text-gray-500 font-medium mb-4 uppercase tracking-wider">
+                <span>Low</span>
+                <span>High</span>
+            </div>
+
+            {onSubmit && (
+                <button
+                    onClick={() => onSubmit(value)}
+                    className="w-full py-2 bg-[#1E3A8A] hover:bg-blue-800 text-white text-sm font-medium rounded-lg transition-colors shadow-lg active:scale-[0.98] transform duration-100"
+                >
+                    Done
+                </button>
+            )}
         </div>
     );
 };

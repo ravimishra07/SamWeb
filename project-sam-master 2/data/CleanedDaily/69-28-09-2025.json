@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-09-28T23:11:48Z",
+  "summary": "Woke up late around 10, got scooty repaired costing 800. Met Tanvi, watched a movie together, but felt she didn’t enjoy it much. She seemed upset when dropped off, possibly because her needs for fun weren’t fully met. Reflected that I might not fully understand her expectations. Despite that, mood feels good, sleep is steady, and energy is fine. Staying cautious about feeling fantastic but not flagging it as hypomania since sleep is okay. Medications seem balanced: antidepressant lifting mood, quetiapine pulling back.",
+  "status": {
+    "moodLevel": "7",
+    "sleepQuality": "7",
+    "sleepDuration": "9",
+    "energyLevel": "7",
+    "stabilityScore": "7"
+  },
+  "insights": {
+    "wins": [
+      "Scooty repaired and back in use",
+      "Good sleep maintained",
+      "Managed mood balance without slipping into hypomania"
+    ],
+    "losses": [
+      "Tanvi seemed upset and expectations may not have been met"
+    ],
+    "ideas": [
+      "Need to better understand Tanvi’s needs for fun and connection"
+    ]
+  },
+  "goals": [
+    "Stay attentive to relationship dynamics with Tanvi",
+    "Keep monitoring mood to ensure stability",
+    "Balance medication effects"
+  ],
+  "tags": [
+    "relationship_reflection",
+    "self_awareness",
+    "mood_balance",
+    "social_outing"
+  ],
+  "triggerEvents": [
+    "Tanvi feeling upset after movie outing"
+  ],
+  "symptomChecklist": [
+    "mild relationship stress",
+    "heightened mood (monitored)",
+    "stable sleep"
+  ]
+}

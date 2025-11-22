@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-10-08T22:14:48Z",
+  "summary": "Had an average interview today; mood is okay with full sleep but some despondency related to job search persists.",
+  "status": {
+    "moodLevel": "6",
+    "sleepQuality": "7",
+    "sleepDuration": "8",
+    "energyLevel": "7",
+    "stabilityScore": "7"
+  },
+  "insights": {
+    "wins": ["Maintained good sleep despite interview stress"],
+    "losses": ["Interview outcome was average, causing some despondency"],
+    "ideas": []
+  },
+  "goals": [],
+  "tags": ["interview", "job search", "mood", "sleep"],
+  "triggerEvents": ["Job interview today"],
+  "symptomChecklist": ["Mild despondency"]
+}

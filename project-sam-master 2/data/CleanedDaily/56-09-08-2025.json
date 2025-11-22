@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-08-09T23:23:10Z",
+  "summary": "Resigned from job yesterday due to ongoing toxic environment and misalignment with mental health needs. Spent the day evaluating next steps, weighing focus between monetizing Project SAM and preparing for stable employment. Identified key personal risks in GPT use and created grounded safeguards. Reached the conclusion that immediate priority should be securing stable income while progressing SAM in a low-pressure parallel track.",
+  "status": {
+    "moodLevel": "3",
+    "sleepQuality": "3",
+    "sleepDuration": "6",
+    "energyLevel": "3",
+    "stabilityScore": "2"
+  },
+  "insights": {
+    "wins": [
+      "Made a decisive career exit aligned with self-preservation.",
+      "Gained clarity on immediate priority: job first, SAM parallel.",
+      "Developed structured safeguards for grounded GPT use."
+    ],
+    "losses": [
+      "Loss of income source creating short-term financial pressure.",
+      "Mild emotional instability due to uncertainty and major transition."
+    ],
+    "ideas": [
+      "Implement a 30-day dual-track schedule for job prep and SAM.",
+      "Validate SAM market fit with small user tests before heavy build.",
+      "Set GPT 'reality filter' prompts for emotionally volatile days."
+    ]
+  },
+  "goals": [
+    "Secure stable job within 4–6 weeks.",
+    "Maintain steady but low-intensity SAM development.",
+    "Run at least 3 SAM validation tests with potential users this month."
+  ],
+  "tags": [
+    "career_transition",
+    "project_sam",
+    "financial_pressure",
+    "decision_clarity",
+    "gpt_safety"
+  ],
+  "triggerEvents": [
+    "Resignation from toxic job environment."
+  ],
+  "symptomChecklist": [
+    "mild_anxiety",
+    "uncertain_future_pressure",
+    "slight_energy_dip"
+  ]
+}

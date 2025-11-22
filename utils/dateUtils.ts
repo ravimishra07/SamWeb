@@ -21,3 +21,17 @@ export const getLast7Days = (): Date[] => {
 export const isSameDate = (date1: Date | number, date2: Date | number): boolean => {
     return isSameDay(date1, date2);
 };
+
+/**
+ * Converts a Date object to YYYY-MM-DD string format for storage
+ */
+export const formatDateKey = (date: Date): string => {
+    return format(date, 'yyyy-MM-dd');
+};
+
+/**
+ * Parses a YYYY-MM-DD string back to a Date object
+ */
+export const parseDateKey = (key: string): Date => {
+    return new Date(key);
+};

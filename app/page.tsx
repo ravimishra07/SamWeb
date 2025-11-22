@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Header } from '@/components/Header';
 import { ChatStream } from '@/components/ChatStream';
 import { ChatInput } from '@/components/ChatInput';
-import { BottomNav } from '@/components/BottomNav';
+import { CalendarStrip } from '@/components/CalendarStrip';
+
 import { useAppData } from '@/context/AppDataContext';
 import { useChatFlow } from '@/hooks/useChatFlow';
 
 export default function Home() {
   const { chatHistory } = useAppData();
-  const { currentStep, handleInput, isFlowActive } = useChatFlow();
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const { currentStep, handleInput, isFlowActive, isViewMode, awaitingConfirmation } = useChatFlow({ selectedDate });
 
   // Auto-scroll to bottom when chat history changes
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -20,37 +22,56 @@ export default function Home() {
 
   return (
     <>
-      <Header title="ChatAI" />
+      <Header title="SAM" />
 
       <main className="flex-1 flex flex-col relative overflow-hidden bg-sam-dark">
+        {/* Calendar Strip */}
+        <CalendarStrip
+          selectedDate={selectedDate}
+          onSelectDate={setSelectedDate}
+        />
+
         {/* Chat Area */}
         <div className="flex-1 relative min-h-0 pb-24">
-          <ChatStream messages={chatHistory} />
+          <ChatStream
+            messages={chatHistory}
+            isViewMode={isViewMode}
+            currentStep={isFlowActive ? currentStep : undefined}
+            onInput={handleInput}
+          />
           <div ref={bottomRef} />
         </div>
 
         {/* Dynamic Input Area */}
-        {isFlowActive && (
+        {isFlowActive && !awaitingConfirmation && currentStep.type === 'text' && (
           <ChatInput
             onSend={handleInput}
-            mode={currentStep.type === 'slider' ? 'slider' : 'text'}
-            sliderConfig={currentStep.type === 'slider' ? {
-              min: currentStep.min || 1,
-              max: currentStep.max || 10,
-              label: currentStep.question,
-              value: 5 // Default value, could be state managed if needed
-            } : undefined}
+            placeholder={currentStep.question}
           />
         )}
 
-        {!isFlowActive && (
-          <div className="fixed bottom-20 w-full text-center text-gray-500 text-sm">
-            Daily log complete. Check Profile for JSON.
+        {/* Confirmation Input */}
+        {awaitingConfirmation && (
+          <ChatInput
+            onSend={handleInput}
+            placeholder="Type 'yes' to save or 'no' to cancel"
+          />
+        )}
+
+        {/* View Mode Message */}
+        {isViewMode && (
+          <div className="fixed bottom-20 w-full text-center text-gray-400 text-sm px-4">
+            📖 Viewing log - Select a different date to create a new entry
+          </div>
+        )}
+
+        {/* Completion Message */}
+        {!isFlowActive && !isViewMode && !awaitingConfirmation && (
+          <div className="fixed bottom-20 w-full text-center text-gray-400 text-sm px-4">
+            ✅ Log complete - Select another date to continue logging
           </div>
         )}
       </main>
-
-      <BottomNav />
     </>
   );
 }

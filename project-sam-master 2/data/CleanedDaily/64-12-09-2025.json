@@ -1,0 +1,51 @@
+{
+  "timestamp": "2025-09-12T23:03:20Z",
+  "summary": "Slept on time and woke up on time, reached library by 9:30 and revised DSA questions until early afternoon. After 1pm, motivation dipped and I went into autopilot mode. Cigarette intake increased and I spent more on food than I should, feeling indulgent despite financial strain. At the same time, I noticed a faint emergence of hope and self-care beneath the darker patterns. Today felt slightly better than yesterday, with a sense that tomorrow can improve further.",
+  "status": {
+    "moodLevel": "5",
+    "sleepQuality": "4",
+    "sleepDuration": "7",
+    "energyLevel": "5",
+    "stabilityScore": "4"
+  },
+  "insights": {
+    "wins": [
+      "Slept and woke on time, kept routine consistent",
+      "Showed up at library at 9:30 and did DSA revision",
+      "Noticed small signs of hope despite difficulties"
+    ],
+    "losses": [
+      "Motivation dropped after 1pm, autopilot phase",
+      "Cigarette count increased",
+      "Spent more on food despite financial strain"
+    ],
+    "ideas": [
+      "Plan lighter study tasks for afternoon dip",
+      "Track cigarette count daily to keep awareness sharp",
+      "Experiment with cheaper food alternatives to control spending"
+    ]
+  },
+  "goals": [
+    "Maintain sleep and wake consistency",
+    "Limit cigarettes tomorrow",
+    "Spend less on food",
+    "Do at least 1 focused DSA session in the afternoon"
+  ],
+  "tags": [
+    "study",
+    "DSA",
+    "cigarettes",
+    "food_spending",
+    "hope_vs_dark_patterns",
+    "routine"
+  ],
+  "triggerEvents": [
+    "Afternoon energy dip after 1pm"
+  ],
+  "symptomChecklist": [
+    "indulgence",
+    "low_motivation",
+    "financial_stress",
+    "emerging_hope"
+  ]
+}

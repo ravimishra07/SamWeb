@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-08-02T01:23:15Z",
+  "summary": "A day of uneasy stability. Sleep was better than usual, but overall mental state remains shaky. Workplace stress continues in the background, but you’ve entered a quiet, focused mode of preparation. No major emotional spikes — just slow motion survival with eyes on the exit.",
+  "status": {
+    "moodLevel": "5",
+    "sleepQuality": "7",
+    "sleepDuration": "7",
+    "energyLevel": "5",
+    "stabilityScore": "3"
+  },
+  "insights": {
+    "wins": [
+      "Maintained focus despite unstable work conditions",
+      "Rested better than past few days — shows some recovery"
+    ],
+    "losses": [
+      "Emotional baseline still fragile due to job threat and uncertainty",
+      "Progress on personal projects or job applications may have slowed today"
+    ],
+    "ideas": [
+      "Start your day with a 15-minute 'transition ritual' — coffee, notes, or planning — to steady the mood",
+      "Even on quiet days, track *one thing* that moves you closer to freedom (prep, app, idea)"
+    ]
+  },
+  "goals": [
+    "Keep emotional balance steady during job search",
+    "Push at least one small piece of career transition each day"
+  ],
+  "tags": [
+    "low_stability",
+    "quiet_focus",
+    "mild_recovery",
+    "ongoing_stress"
+  ],
+  "triggerEvents": [],
+  "symptomChecklist": [
+    "emotional flatness",
+    "background anxiety",
+    "focus effort"
+  ]
+}

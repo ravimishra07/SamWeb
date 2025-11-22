@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-19T21:57:28Z",
+  "summary": "High-energy but irritable day. Maintained routine and studied well. Got a call from Google recruiter, asked for 3 weeks to prepare. Experienced irritation and anger during a conversation with dad, cut the call twice after he interrupted while discussing Tanvi and asked about meds, which felt like weaponizing bipolar. Feeling conflicted about whether the reaction was justified.",
+  "status": {
+    "moodLevel": "6",
+    "sleepQuality": "6",
+    "sleepDuration": "7",
+    "energyLevel": "7",
+    "stabilityScore": "4"
+  },
+  "insights": {
+    "wins": ["Maintained routine despite high irritability", "Studied better than previous day", "Proactively asked Google recruiter for time to prepare"],
+    "losses": ["Reacted angrily to dad’s interruption", "Cut the call twice which might feel impulsive"],
+    "ideas": ["Explore ways to assert boundaries calmly when mental health is weaponized", "Use anger as signal to protect personal conversations"]
+  },
+  "goals": ["Keep routine consistent", "Prepare for Google screening", "Practice emotional regulation in triggering conversations"],
+  "tags": ["high_energy", "irritability", "study_progress", "anger", "family_interaction", "career_prep", "boundary_violation"],
+  "triggerEvents": ["Dad interrupted conversation about Tanvi", "Questioned about meds in a way that felt weaponizing"],
+  "symptomChecklist": ["Irritability", "Anger", "Hyper-focus on tasks", "High energy"]
+}

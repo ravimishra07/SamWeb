@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-09-29T21:55:20Z",
+  "summary": "A normal but unproductive day. Felt relaxed and good overall. Didn't get much done. The 3rd round interview with Glance was postponed.",
+  "status": {
+    "moodLevel": "6",
+    "sleepQuality": "6",
+    "sleepDuration": "10",
+    "energyLevel": "5",
+    "stabilityScore": "8"
+  },
+  "insights": {
+    "wins": ["Stayed relaxed and felt good despite the postponement."],
+    "losses": ["Day felt unproductive, no major progress made."],
+    "ideas": []
+  },
+  "goals": ["Regain momentum tomorrow with at least one focused task."],
+  "tags": ["relaxed", "unproductive", "interview_postponed"],
+  "triggerEvents": ["Glance 3rd round interview postponed"],
+  "symptomChecklist": []
+}

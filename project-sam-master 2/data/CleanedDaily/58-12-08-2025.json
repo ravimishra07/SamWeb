@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-12T23:30:29Z",
+  "summary": "Woke up early at 7, went for a run. Worked on SAM project in morning and evening. Attended therapy at noon, which went well. Took a work walk at 5, then studied for interview. Spent 2 hours out with Varnit in the evening. Overall, a good and productive day with positive therapy session.",
+  "status": {
+    "moodLevel": "5",
+    "sleepQuality": "7",
+    "sleepDuration": "7",
+    "energyLevel": "4",
+    "stabilityScore": "4"
+  },
+  "insights": {
+    "wins": ["Consistent early start and exercise", "Therapy session was positive", "Balanced work and social time"],
+    "losses": [],
+    "ideas": ["Keep up the routine of morning runs to boost energy", "Maintain balance between work and social activities"]
+  },
+  "goals": [],
+  "tags": ["therapy_good", "productive_day", "early_wake", "social_time"],
+  "triggerEvents": ["therapy session", "evening outing with Varnit"],
+  "symptomChecklist": []
+}

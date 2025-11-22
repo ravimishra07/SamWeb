@@ -1,22 +1,28 @@
 "use client";
 
-import React from 'react';
-import { MessageSquare, Activity, User } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
+import React from "react";
+import { MessageSquare, Activity, User } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 
 export const BottomNav: React.FC = () => {
     const pathname = usePathname();
 
     const tabs = [
-        { name: 'Log Viewer', href: '/', icon: MessageSquare },
-        { name: 'Insights', href: '/insights', icon: Activity },
-        { name: 'Profile', href: '/profile', icon: User },
+        { name: "Log Viewer", href: "/", icon: MessageSquare },
+        { name: "Insights", href: "/insights", icon: Activity },
+        { name: "Profile", href: "/profile", icon: User },
     ];
 
     return (
-        <nav className="flex items-center justify-around bg-sam-gray/90 backdrop-blur-md border-t border-white/5 py-3 px-2 pb-safe">
+        <motion.nav
+            className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/10 backdrop-blur-lg border-t border-white/5 rounded-xl py-3 px-2 shadow-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 120 }}
+        >
             {tabs.map((tab) => {
                 const isActive = pathname === tab.href;
                 const Icon = tab.icon;
@@ -26,7 +32,7 @@ export const BottomNav: React.FC = () => {
                         href={tab.href}
                         className={clsx(
                             "flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200",
-                            isActive ? "text-sam-blue-DEFAULT" : "text-gray-500 hover:text-gray-300"
+                            isActive ? "text-primary" : "text-gray-400 hover:text-gray-200"
                         )}
                     >
                         <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
@@ -34,6 +40,6 @@ export const BottomNav: React.FC = () => {
                     </Link>
                 );
             })}
-        </nav>
+        </motion.nav>
     );
 };

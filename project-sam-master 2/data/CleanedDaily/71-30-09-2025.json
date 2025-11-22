@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-09-30T23:25:38Z",
+  "summary": "Had an intro interview at Grab; no update yet on Glance 3rd round interview. Learned about dad's severe accident which he hid to avoid stressing us. Feeling angry but heading to native place to bring him to Lucknow for better treatment. Currently waiting at railway station.",
+  "status": {
+    "moodLevel": "5",
+    "sleepQuality": "5",
+    "sleepDuration": "8",
+    "energyLevel": "5",
+    "stabilityScore": "6"
+  },
+  "insights": {
+    "wins": [
+      "Completed intro interview at Grab"
+    ],
+    "losses": [
+      "No update on Glance 3rd round interview",
+      "Dad had a severe accident causing worry"
+    ],
+    "ideas": []
+  },
+  "goals": [],
+  "tags": ["interview", "family", "travel", "health"],
+  "triggerEvents": ["Dad's severe accident", "Grab interview", "Waiting at railway station"],
+  "symptomChecklist": []
+}

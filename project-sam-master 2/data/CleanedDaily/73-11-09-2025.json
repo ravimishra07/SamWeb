@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-10-11T22:02:05Z",
+  "summary": "Five months ago left BluSmart, then after a three-month job search joined Wiom for two months. Now it’s been two months since leaving Wiom and still looking for the next role. Despite financial uncertainty, mental health has improved a lot since the depressive phase earlier this year. Relationships with Tanvi and Dad are growing stronger. Interviews are ongoing. Today felt average, didn’t study, but that’s okay.",
+  "status": {
+    "moodLevel": "6",
+    "sleepQuality": "8",
+    "sleepDuration": "9",
+    "energyLevel": "6",
+    "stabilityScore": "7"
+  },
+  "insights": {
+    "wins": ["Maintained emotional balance despite unemployment", "Strengthened relationship with Tanvi and Dad"],
+    "losses": ["Skipped study session today"],
+    "ideas": ["Maintain steady interview prep pace while protecting stability"]
+  },
+  "goals": ["Crack one good interview soon", "Keep mental health progress intact"],
+  "tags": ["job_search", "career_transition", "recovery_phase", "family_bonding", "financial_stress", "stability_growth"],
+  "triggerEvents": ["Reflection on employment timeline since BluSmart"],
+  "symptomChecklist": ["past_depression", "mild_motivation_drop"]
+}
