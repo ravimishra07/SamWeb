@@ -30,7 +30,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     return (
         <form
             onSubmit={handleSubmit}
-            className="fixed bottom-0 left-0 w-full px-4 pb-6 pt-4 z-20 bg-gradient-to-t from-sam-dark via-sam-dark to-transparent"
+            className="fixed bottom-[80px] left-0 w-full px-4 pb-2 pt-4 z-20 bg-gradient-to-t from-sam-dark via-sam-dark to-transparent"
         >
             {/* Mode Toggle (Optional) */}
             {onToggleMode && (

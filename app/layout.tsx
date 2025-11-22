@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppDataProvider } from "@/context/AppDataContext";
+import { BottomNav } from "@/components/BottomNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <AppDataProvider>
           <div className="w-full max-w-md bg-sam-dark min-h-screen relative shadow-2xl overflow-hidden flex flex-col">
             {children}
+            <BottomNav />
           </div>
         </AppDataProvider>
       </body>

@@ -11,14 +11,14 @@ export const BottomNav: React.FC = () => {
     const pathname = usePathname();
 
     const tabs = [
-        { name: "Log Viewer", href: "/", icon: MessageSquare },
+        { name: "Home", href: "/", icon: MessageSquare },
         { name: "Insights", href: "/insights", icon: Activity },
-        { name: "Profile", href: "/profile", icon: User },
+        // { name: "Profile", href: "/profile", icon: User }, // Commented out until profile is ready
     ];
 
     return (
         <motion.nav
-            className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/10 backdrop-blur-lg border-t border-white/5 rounded-xl py-3 px-2 shadow-xl flex justify-around items-center z-50"
+            className="absolute bottom-0 left-0 w-full bg-sam-dark/80 backdrop-blur-xl border-t border-white/10 py-2 px-6 shadow-2xl flex justify-around items-center z-50 pb-safe"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 120 }}

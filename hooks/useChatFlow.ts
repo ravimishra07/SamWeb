@@ -41,6 +41,9 @@ export const useChatFlow = ({ selectedDate, isSearchMode = false }: UseChatFlowP
         setCurrentStepIndex(0);
         setAwaitingConfirmation(false);
 
+        let timer1: NodeJS.Timeout;
+        let timer2: NodeJS.Timeout;
+
         const existingLog = getLogForDate(dateKey);
 
         if (existingLog) {
@@ -50,7 +53,7 @@ export const useChatFlow = ({ selectedDate, isSearchMode = false }: UseChatFlowP
             setDraftLog(existingLog);
 
             // Display the log data in chat
-            setTimeout(() => {
+            timer1 = setTimeout(() => {
                 addChatMessage({
                     id: 'view-mode-' + Date.now(),
                     role: 'assistant',
@@ -59,7 +62,7 @@ export const useChatFlow = ({ selectedDate, isSearchMode = false }: UseChatFlowP
                 });
             }, 300);
 
-            setTimeout(() => {
+            timer2 = setTimeout(() => {
                 addChatMessage({
                     id: 'log-summary-' + Date.now(),
                     role: 'assistant',
@@ -88,15 +91,20 @@ export const useChatFlow = ({ selectedDate, isSearchMode = false }: UseChatFlowP
             });
 
             // Start the flow
-            setTimeout(() => {
+            timer1 = setTimeout(() => {
                 addChatMessage({
-                    id: 'bot-init-' + Date.now(),
+                    id: 'bot-init-v2-' + dateKey,
                     role: 'assistant',
                     content: CHAT_FLOW[0].question,
                     timestamp: Date.now(),
                 });
             }, 300);
         }
+
+        return () => {
+            if (timer1) clearTimeout(timer1);
+            if (timer2) clearTimeout(timer2);
+        };
     }, [selectedDate, dateKey, isSearchMode]);
 
     const handleInput = useCallback((value: string | number) => {

@@ -95,7 +95,12 @@ export const AppDataProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     const addChatMessage = (message: ChatMessage) => {
-        setChatHistory((prev) => [...prev, message]);
+        setChatHistory((prev) => {
+            if (prev.some(msg => msg.id === message.id)) {
+                return prev;
+            }
+            return [...prev, message];
+        });
     };
 
     const clearChatHistory = () => {
