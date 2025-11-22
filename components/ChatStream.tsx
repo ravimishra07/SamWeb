@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { ChatMessage } from '../utils/mockData';
 import { MoodSlider } from './MoodSlider';
+import { LogCard } from './LogCard';
 import { FlowStep } from '../utils/types';
 
 interface ChatStreamProps {
@@ -30,6 +31,29 @@ export const ChatStream: React.FC<ChatStreamProps> = ({ messages, isViewMode = f
         <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar pb-32">
             {messages.map((msg) => {
                 const isAssistant = msg.role === 'assistant';
+
+                // Check if this message has log data to display
+                if (msg.metadata?.logData) {
+                    return (
+                        <div key={msg.id} className="w-full space-y-2">
+                            <div className={clsx(
+                                "flex w-full",
+                                isAssistant ? "justify-start" : "justify-end"
+                            )}>
+                                <div className={clsx(
+                                    "max-w-[85%] p-4 text-sm leading-relaxed shadow-md rounded-2xl",
+                                    isAssistant ? "bg-chat-gradient text-white" : "bg-sam-gray text-gray-200"
+                                )}>
+                                    {msg.content}
+                                </div>
+                            </div>
+                            <div className="flex w-full justify-center py-2">
+                                <LogCard log={msg.metadata.logData as any} />
+                            </div>
+                        </div>
+                    );
+                }
+
                 return (
                     <div
                         key={msg.id}

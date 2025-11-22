@@ -6,9 +6,10 @@ import { formatDateKey } from '../utils/dateUtils';
 
 interface UseChatFlowProps {
     selectedDate: Date;
+    isSearchMode?: boolean;
 }
 
-export const useChatFlow = ({ selectedDate }: UseChatFlowProps) => {
+export const useChatFlow = ({ selectedDate, isSearchMode = false }: UseChatFlowProps) => {
     const { addChatMessage, addDailyLog, getLogForDate, clearChatHistory } = useAppData();
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [draftLog, setDraftLog] = useState<Partial<DailyLog>>({
@@ -32,6 +33,9 @@ export const useChatFlow = ({ selectedDate }: UseChatFlowProps) => {
 
     // Load existing log or start new flow when date changes
     useEffect(() => {
+        // If in search mode, do nothing (don't clear history, don't start flow)
+        if (isSearchMode) return;
+
         // Clear chat history when date changes
         clearChatHistory();
         setCurrentStepIndex(0);
@@ -59,12 +63,15 @@ export const useChatFlow = ({ selectedDate }: UseChatFlowProps) => {
                 addChatMessage({
                     id: 'log-summary-' + Date.now(),
                     role: 'assistant',
-                    content: formatLogForDisplay(existingLog),
+                    content: '', // Content is empty as we render the card
                     timestamp: Date.now(),
+                    metadata: {
+                        logData: existingLog
+                    }
                 });
             }, 600);
         } else {
-            // Edit mode: Start new flow
+            // Edit mode: Start new flow ONLY if no log exists
             setIsViewMode(false);
             setIsFlowActive(true);
             setDraftLog({
@@ -90,7 +97,7 @@ export const useChatFlow = ({ selectedDate }: UseChatFlowProps) => {
                 });
             }, 300);
         }
-    }, [selectedDate, dateKey]);
+    }, [selectedDate, dateKey, isSearchMode]);
 
     const handleInput = useCallback((value: string | number) => {
         if (!isFlowActive) return;

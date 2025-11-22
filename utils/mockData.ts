@@ -14,6 +14,10 @@ export interface ChatMessage {
     role: 'user' | 'assistant';
     content: string;
     timestamp: number;
+    metadata?: {
+        logData?: any;
+        [key: string]: any;
+    };
 }
 
 const generateId = () => Math.random().toString(36).substr(2, 9);

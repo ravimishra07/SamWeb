@@ -18,7 +18,7 @@ export const BottomNav: React.FC = () => {
 
     return (
         <motion.nav
-            className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/10 backdrop-blur-lg border-t border-white/5 rounded-xl py-3 px-2 shadow-xl"
+            className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/10 backdrop-blur-lg border-t border-white/5 rounded-xl py-3 px-2 shadow-xl flex justify-around items-center z-50"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 120 }}
