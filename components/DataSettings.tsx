@@ -59,6 +59,93 @@ export const DataSettings: React.FC = () => {
         }
     };
 
+    const handleImportLegacy = async () => {
+        if (!confirm("Import legacy data from 'legacy_data.json'? This will merge with existing logs.")) {
+            return;
+        }
+        setIsLoading(true);
+        setStatus({ type: 'info', message: 'Importing legacy data...' });
+
+        try {
+            const response = await fetch('/legacy_data.json');
+            if (!response.ok) throw new Error('Failed to fetch legacy data file.');
+
+            const data = await response.json();
+            if (!Array.isArray(data)) throw new Error('Invalid data format. Expected an array.');
+
+            const { db } = await import('@/utils/db');
+            const { v4: uuidv4 } = await import('uuid');
+
+            const logs = data.map((item: any) => {
+                // Parse date DD/MM/YY or DD/MM/YYYY
+                const [day, month, yearPart] = item.date.split('/');
+                let year = parseInt(yearPart);
+                if (year < 100) year += 2000; // Handle YY format
+
+                // Handle invalid dates gracefully
+                if (isNaN(year) || isNaN(parseInt(month)) || isNaN(parseInt(day))) {
+                    console.warn('Skipping invalid date:', item.date);
+                    return null;
+                }
+
+                const dateStr = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+                // Try to parse content as JSON if it looks like it
+                let summary = item.content;
+                let moodLevel = 5;
+                let energyLevel = 5;
+                let tags: string[] = [];
+
+                if (typeof item.content === 'string' && item.content.trim().startsWith('{')) {
+                    try {
+                        const parsed = JSON.parse(item.content);
+                        if (parsed.text) summary = parsed.text;
+                        if (parsed.mood) {
+                            // Map mood string to number if needed, or if it's already a number
+                            // For now, keep default 5 unless we have logic
+                        }
+                        if (parsed.tags && Array.isArray(parsed.tags)) tags = parsed.tags;
+                    } catch (e) {
+                        // Ignore parse error, treat as string
+                    }
+                }
+
+                return {
+                    id: uuidv4(),
+                    date: dateStr,
+                    timestamp: new Date(dateStr).toISOString(),
+                    summary: summary,
+                    status: {
+                        moodLevel,
+                        sleepQuality: 5,
+                        sleepDuration: 0,
+                        energyLevel,
+                        stabilityScore: 5
+                    },
+                    insights: {
+                        wins: [],
+                        losses: [],
+                        ideas: []
+                    },
+                    goals: [],
+                    tags: tags,
+                    triggerEvents: [],
+                    symptomChecklist: []
+                };
+            }).filter(Boolean); // Remove nulls
+
+            await db.logs.bulkAdd(logs);
+            setStatus({ type: 'success', message: `Imported ${logs.length} legacy logs successfully!` });
+            setTimeout(() => window.location.reload(), 2000);
+
+        } catch (e: any) {
+            console.error(e);
+            setStatus({ type: 'error', message: e.message || 'Import failed.' });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className="bg-sam-card/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 space-y-6">
             <div>
@@ -101,6 +188,16 @@ export const DataSettings: React.FC = () => {
                         )}
                     >
                         Restore
+                    </button>
+                </div>
+
+                <div className="pt-4 border-t border-white/5">
+                    <button
+                        onClick={handleImportLegacy}
+                        disabled={isLoading}
+                        className="w-full py-2 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                    >
+                        Import Legacy Data (JSON)
                     </button>
                 </div>
 
