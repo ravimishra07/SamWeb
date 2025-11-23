@@ -7,6 +7,7 @@ import { DailyLog } from '../utils/types';
 import { seedData } from '../utils/seedData';
 import { db } from '../utils/db';
 import { backupService } from '../services/backupService';
+import { supabase } from '../utils/supabase/client';
 
 interface AppDataState {
     logs: DailyLog[];
@@ -42,6 +43,25 @@ export const AppDataProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     const addDailyLog = async (entry: DailyLog) => {
         await db.logs.put(entry);
+
+        // Sync to Supabase (Fire and forget)
+        try {
+            const { error } = await supabase.from('logs').upsert({
+                id: entry.id,
+                date: entry.date,
+                timestamp: entry.timestamp,
+                summary: entry.summary,
+                status: entry.status,
+                insights: entry.insights,
+                goals: entry.goals,
+                tags: entry.tags,
+                trigger_events: entry.triggerEvents,
+                symptom_checklist: entry.symptomChecklist
+            });
+            if (error) console.error("Supabase Sync Error:", error);
+        } catch (err) {
+            console.error("Supabase Sync Failed:", err);
+        }
     };
 
     const updateDailyLog = async (entry: DailyLog) => {

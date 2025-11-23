@@ -4,6 +4,7 @@ export interface DailyLogStatus {
     sleepDuration: number;
     energyLevel: number;
     stabilityScore: number;
+    anxietyLevel?: number;
 }
 
 export interface DailyLogInsights {

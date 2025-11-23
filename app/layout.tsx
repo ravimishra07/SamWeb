@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-sam-dark text-sam-text-primary min-h-screen flex justify-center`}>
         <AppDataProvider>
-          <div className="w-full max-w-md bg-sam-dark min-h-screen relative shadow-2xl overflow-hidden flex flex-col">
+          <div className="w-full max-w-md bg-sam-dark h-[100dvh] relative shadow-2xl overflow-hidden flex flex-col">
             {children}
             <BottomNav />
           </div>

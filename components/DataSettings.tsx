@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useAppData } from '@/context/AppDataContext';
 import clsx from 'clsx';
+import { DailyLog } from '@/utils/types';
 
 export const DataSettings: React.FC = () => {
     const { backupData, restoreData } = useAppData();
@@ -132,7 +133,7 @@ export const DataSettings: React.FC = () => {
                     triggerEvents: [],
                     symptomChecklist: []
                 };
-            }).filter(Boolean); // Remove nulls
+            }).filter(Boolean) as DailyLog[]; // Remove nulls and cast
 
             await db.logs.bulkAdd(logs);
             setStatus({ type: 'success', message: `Imported ${logs.length} legacy logs successfully!` });
